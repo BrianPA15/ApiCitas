@@ -1,0 +1,101 @@
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    background-color: floralwhite !important; /* Color suave de fondo */
+    line-height: 1.6 !important;
+    color: #333 !important;
+}
+.encabezado
+{
+    background: linear-gradient(120deg, #007bff, #66ccff);
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    // position: sticky;
+    // top: 0;
+    // z-index: 1000;
+
+
+    // background: linear-gradient(135deg, #00aaff, #66ccff); /* Suave gradiente de azul */
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    // padding: 20px 20px;
+    // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
+    // background-color: lightblue;
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    // padding: 25px 20px;
+
+
+    .menu{
+        width: 100%;
+        // max-width: 1200px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .izquierda{
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 12%;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            // text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #fff;
+            margin: 0;
+        }
+        .derecha{
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        div{
+            padding: 0px 10px;
+            .btn-link {
+                cursor: pointer;
+                text-decoration: none;
+                background-color: #4CAF50;
+                color: white;
+                font-weight: bold;
+                padding: 10px 20px;
+                border-radius: 8px;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                .btn-link:hover {
+                    background-color: #45a049;
+                    transform: scale(1.05); /* Pequeña animación al pasar el ratón */
+                }
+               
+            }
+        }
+    }
+}
+main {
+    margin-top: 10px;
+}
+
+@import "./registro.scss";
+@import "./login.scss";
+@import "./citas.scss";
+
+
+    // .listacontenido{
+    //     display: flex;
+    //     justify-content: space-around;
