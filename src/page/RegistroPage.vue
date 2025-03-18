@@ -1,54 +1,54 @@
 <template>
   <div class="container_registro">
-    <form @submit.prevent="registro">
-      <h1>Registro</h1>
-
-      <div class="input-group">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" v-model="name" placeholder="Nombre" required>
+    <form @submit.prevent="registro" >
+      <div class="text-center">
+        <img src="../assets/img/user.png" alt="">
+        <h1 class="text-center">Registro</h1>
       </div>
-
-      <div class="input-group">
-        <label for="lastname">Apellido:</label>
-        <input type="text" id="lastname" v-model="lastname" placeholder="Apellido" required>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre:</label>
+            <input type="text" id="name" v-model="name" class="form-control" placeholder="Nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" v-model="email" class="form-control" placeholder="Correo Electrónico" required>
+          </div>
+          <div class="mb-3">
+            <label for="username" class="form-label">Usuario:</label>
+            <input type="text" id="username" v-model="username" class="form-control" placeholder="Usuario" required>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="lastname" class="form-label">Apellido:</label>
+            <input type="text" id="lastname" v-model="lastname" class="form-control" placeholder="Apellido" required>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Teléfono:</label>
+            <input type="text" id="phone" v-model="phone" class="form-control" placeholder="Número de teléfono" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña:</label>
+            <input type="password" id="password" v-model="password" class="form-control" placeholder="Contraseña" required>
+          </div>
+        </div>
       </div>
-
-      <div class="input-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" v-model="email" placeholder="Correo Electrónico" required>
+      
+      <div class="mb-2">
+        <label for="date" class="form-label">Fecha de nacimiento:</label>
+        <input v-model="date" type="date" class="form-control" placeholder="Fecha de nacimiento" />
       </div>
-
-      <div class="input-group">
-        <label for="phone">Teléfono:</label>
-        <input type="text" id="phone" v-model="phone" placeholder="Número de teléfono" required>
-      </div>
-
-      <div class="input-group">
-        <label for="username">Usuario:</label>
-        <input type="text" id="username" v-model="username" placeholder="Usuario" required>
-      </div>
-
-      <div class="input-group">
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" v-model="password" placeholder="Contraseña" required>
-      </div>
-
-      <div class="input-group">
-        <label for="date">Fecha de nacimiento:</label>
-        <input v-model="date" type="date" placeholder="Fecha de nacimiento" />
-        <!-- <i class="bi bi-calendar-event"  @click="openCalendar"></i>
-                <div class="calendar" v-if="showCalendar">
-                  <VDatePicker v-model="date" mode="date" />
-                </div> -->
-      </div>
-
-    <div class="btn-group">
+      
+      <div class="btn-group">
         <button type="submit" class="btn-registrar">Registrarse</button>
         <router-link to="/" class="btn-registrar">
           Cancelar
         </router-link>
-    </div>
-</form>
+      </div>
+    </form>
   </div>
 </template>
 

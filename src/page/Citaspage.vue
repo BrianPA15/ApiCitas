@@ -1,5 +1,6 @@
 <template>
     <div class="container_login_citas">
+        <img src="../assets/img/unnamed.png" alt="" style="width: 50%; margin-bottom: 20px;">
         <div class="menu_button">
             <router-link :to="{ name: 'pedir', params: { username } }" class="btn-citas">Pedir Citas</router-link>
             <!-- <button>Pedir Citas</button> -->

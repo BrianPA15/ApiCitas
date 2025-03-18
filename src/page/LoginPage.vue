@@ -1,7 +1,10 @@
 <template>
     <div class="container_login">
         <form @submit.prevent="login">
-            <h1>LOGIN</h1>
+          <div class="text-center">
+                <img src="../assets/img/user.png" alt="">
+                <h1>LOGIN</h1>
+            </div>
             <div class="input-group">
                 <label for="username">Usuario:</label>
                 <input type="text" id="username" v-model="username" placeholder="Usuario" required>
