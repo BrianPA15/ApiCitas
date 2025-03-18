@@ -53,12 +53,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, getCurrentInstance } from 'vue'
 import 'v-calendar/style.css'
 import { useRouter } from 'vue-router'
 import apiService from '../services/apiService';
 
 const router = useRouter();
+
+// Acceder a la instancia de Vue para utilizar $swal
+const { proxy } = getCurrentInstance();
 
 // Variables reactivas
 const name = ref('')
@@ -113,10 +116,21 @@ const registro = async () => {
     const data= await response.json();
     console.log('Respuesta completa:', data)
     if (!response.ok) {
-      alert('Error al registrar el usuario.')
+      // alert('Error al registrar el usuario.')
+      proxy.$swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Error al registrar el usuario.'
+    });
 
     } else {
-      alert('Usuario registrado correctamente.')
+      // alert('Usuario registrado correctamente.')
+      proxy.$swal.fire({
+      icon: 'success',
+      title: 'Informacion!',
+      text: 'Usuario registrado correctamente'
+    });
+
       router.push({ name: 'login'});
     }
   } catch (error) {

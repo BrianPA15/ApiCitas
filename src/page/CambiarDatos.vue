@@ -23,183 +23,95 @@
         <input type="text" id="phone" v-model="phone" placeholder="Número de teléfono">
       </div>
 
-
       <div class="input-group">
         <label for="date">Fecha de nacimiento:</label>
-        <input v-model="date" type="date" placeholder="Fecha de nacimiento" />
+        <strong>{{ date }}</strong>
       </div>
 
-    <div class="btn-group">
+      <div class="btn-group">
         <button type="submit" class="btn-registrar">Cambiar</button>
         <router-link :to="{ name: 'username', params: { username: username.value } }" class="btn-registrar">
           Cancelar
         </router-link>
-    </div>
-</form>
+      </div>
+    </form>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useCounterStore } from '../stores/counter'
-const router = useRouter();
-const route = useRoute();
-const apitoken=useCounterStore();
-// Extrae el username de la URL
-const username = ref(route.params.username);
-
-// Variables reactivas
-const name = ref('')
-const lastname = ref('')
-const email = ref('')
-const phone = ref('')
-const date = ref('')
-
-
-const formatDate = (selectedDate) => {
-if (!selectedDate) return '';
-
-// Si es string (del input type="date"), convertirlo a Date
-const dateObj = typeof selectedDate === 'string'
-  ? new Date(selectedDate + 'T00:00:00')  // Se añade hora para evitar desfase horario
-  : selectedDate;
-
-
-const year = dateObj.getFullYear();
-const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-const day = String(dateObj.getDate()).padStart(2, '0');
-
-
-return `${day}/${month}/${year}`;  // Cambiado para que use el formato DD/MM/YYYY
-}
-
-
-const cambio = async () => {
-  try {
-    const formattedDate = formatDate(date.value)
-    console.log('Datos enviados:', {
-      name: name.value,
-      lastname: lastname.value,
-      email: email.value,
-      phone: phone.value,
-      date: formattedDate
-    })
-
-
-    const response = await fetch('http://127.0.0.1:5000/currentUser', {
-      method: 'PATCH',
-      headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apitoken.getToken()}`
-      },
-      body: JSON.stringify({
-        name: name.value,
-        lastname: lastname.value,
-        email: email.value,
-        phone: phone.value,
-        date: formattedDate
-      })
-    })
-    const data= await response.json();
-    console.log('Respuesta completa:', data)
-    if (!response.ok) {
-      alert('Error al cambiar los datos.')
-
-    } else {
-      alert('Has cambiado los datos correctamente')
-      router.push({ name: 'username', params: { username: username.value } });
-    }
-  } catch (error) {
-    console.error('Error de conexión:', error)
-    alert('Error al conectar con el servidor.')
-  }
-}
-</script>
-
-
-
-<!-- <script setup>
-import { ref } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-import { useCounterStore } from '../stores/counter'
-
+import apiService from '../services/apiService';
 
 const router = useRouter();
 const route = useRoute();
 const apitoken = useCounterStore();
 
+// Extrae el username de la URL
+const username = ref(route.params.username);
 
-const username = ref(route.params.username)
+// Variables reactivas
+const name = ref('');
+const lastname = ref('');
+const email = ref('');
+const phone = ref('');
+const date = ref('');
+const perfilList = ref({});
 
+onMounted(async () => {
+    try {
+        const response = await apiService.VerPerfil();
+        const data = await response.json();
 
-const name = ref('')
-const lastname = ref('')
-const email = ref('')
-const phone = ref('')
-const date = ref('')
+        // Asigna los datos del perfil a las variables reactivas
+        name.value = data.name || '';
+        lastname.value = data.lastname || '';
+        email.value = data.email || '';
+        phone.value = data.phone || '';
+        date.value = data.date || '';
 
-
-const formatDate = (selectedDate) => {
-  if (!selectedDate) return '';
-
-
-  const dateObj = typeof selectedDate === 'string'
-      ? new Date(selectedDate + 'T00:00:00')
-      : selectedDate;
-
-
-  const year = dateObj.getFullYear();
-  const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-  const day = String(dateObj.getDate()).padStart(2, '0');
-
-
-  return `${day}/${month}/${year}`;
-}
-
+        console.log("Datos del perfil:", data);
+    } catch (error) {
+        console.error("Error al cargar el perfil:", error);
+    }
+});
 
 const cambio = async () => {
-  try {
-      const formattedDate = date.value ? formatDate(date.value) : '';
-
-
-      // Crear objeto con solo los campos que tienen valor
-      const updatedData = {};
-      if (name.value.trim() !== '') updatedData.name = name.value;
-      if (lastname.value.trim() !== '') updatedData.lastname = lastname.value;
-      if (email.value.trim() !== '') updatedData.email = email.value;
-      if (phone.value.trim() !== '') updatedData.phone = phone.value;
-      if (formattedDate !== '') updatedData.date = formattedDate;
-
-
-      console.log('Datos enviados:', updatedData);
-
-
-      const response = await fetch('http://127.0.0.1:5000/currentUser', {
-          method: 'PATCH',
-          headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${apitoken.getToken()}`
-          },
-          body: JSON.stringify(updatedData)  // Solo manda lo que tiene valor
-      });
-
+   try {
+    const Data={
+      name:name.value,
+      lastname:lastname.value,
+      email:email.value,
+      phone:phone.value
+    };
+    const response = await apiService.Cambiar(Data);
+      // const response = await fetch('http://127.0.0.1:5000/currentUser', {
+      //    method: 'PATCH',
+      //    headers: {
+      //       'Content-Type': 'application/json',
+      //       'Authorization': `Bearer ${apitoken.getToken()}`
+      //    },
+      //    body: JSON.stringify({
+      //       name: name.value,
+      //       lastname: lastname.value,
+      //       email: email.value,
+      //       phone: phone.value,
+      //    })
+      // });
 
       const data = await response.json();
       console.log('Respuesta completa:', data);
 
-
       if (!response.ok) {
-          alert('Error al cambiar los datos.');
+         alert('Error al cambiar los datos.');
       } else {
-          alert('Has cambiado los datos correctamente.');
-          router.push({ name: 'username', params: { username: username.value } });
+         alert('Has cambiado los datos correctamente');
+         router.push({ name: 'username', params: { username: username.value } });
       }
-
-
-  } catch (error) {
+   } catch (error) {
       console.error('Error de conexión:', error);
       alert('Error al conectar con el servidor.');
-  }
+   }
 }
-</script> -->
+</script>

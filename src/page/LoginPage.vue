@@ -20,31 +20,46 @@
     </div>
 </template>
 
-
 <script setup>
-import { ref } from 'vue'
+import { ref, getCurrentInstance } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCounterStore } from '../stores/counter'
 import apiService from '@/services/apiService';
 
 const router = useRouter();
-const store = useCounterStore(); // Acceder al store para manejar la autenticación
+const store = useCounterStore();
 
 const username = ref('')
 const password = ref('')
 
+// Acceder a la instancia de Vue para utilizar $swal
+const { proxy } = getCurrentInstance();
+
+// Función login
 const login = async () => {
-  const user= {
-  username: username.value,
-  password: password.value
-}
-  let response= await apiService.LoginUser(user)
+  const user = {
+    username: username.value,
+    password: password.value
+  }
+
+  let response = await apiService.LoginUser(user)
   const data = await response.json();
 
   if (!response.ok) {
-    alert('Error al acceder el usuario.')
+    // Usando $swal desde la instancia
+    proxy.$swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Error al acceder el usuario.'
+    });
   } else {
-    alert('Usuario correctamente.'),
+    // Usando $swal desde la instancia
+    proxy.$swal.fire({
+      icon: 'success',
+      title: '¡Bienvenido!',
+      text: 'Usuario correctamente autenticado.'
+    });
+
     console.log("Token recibido : " + data.access_token);
     store.setToken(data.access_token); // Establecer el token y marcar al usuario como autenticado
     router.push({ name: 'username', params: { username: username.value } }); // Redirigir a la página de usuario o al perfil

@@ -164,5 +164,20 @@ export default {
             }
             });
             return response;
+    },
+    
+    async Cambiar(User){
+        const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
+        if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
+        const apitoken=useCounterStore();
+        const response = await fetch('http://127.0.0.1:5000/currentUser', {
+            method: 'PATCH',
+            headers: {
+               'Content-Type': 'application/json',
+               'Authorization': `Bearer ${apitoken.getToken()}`
+            },
+            body: JSON.stringify(User)
+         });
+         return response;
     }
 }

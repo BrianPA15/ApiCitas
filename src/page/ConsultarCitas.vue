@@ -4,11 +4,12 @@
             <router-link :to="{ name: 'Citas', params: { username } }" class="btn-citas">Volver</router-link>
             <!-- <h2>{{ username }}</h2> -->
             <h3>Mis Citas</h3>
-
+            <div class="info_menu">
             <button @click="filtrar" class="btn-citas">Buscar por día</button>
             <input type="date" id="day" v-model="day" placeholder="DD/MM/YYYY">
-            <button @click="Cancelar" class="btn-citas">Quitar Filtrar</button>
-            
+            <button @click="Cancelar" class="btn-citas">Quitar Filtrado</button>
+            </div>
+
             <ul v-for="consult in consultList" :key="consult.id">
                 <li>
                     <div>

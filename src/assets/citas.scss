@@ -9,25 +9,25 @@
     text-align: center;
     font-family: 'Arial', sans-serif;
     transition: all 0.3s ease;
-    // max-width: 700px;
-    // margin: 60px auto;
-    // padding: 30px;
-    // background: #fff;
-    // border-radius: 10px;
-    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    // text-align: center;
+
     .menu_button
     {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
+        // display: flex;
+        // flex-direction: column;
+        // gap: 15px;
+        // align-items: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); // Se adaptan en una cuadrícula flexible
+        gap: 20px;
+        justify-content: center;
         align-items: center;
+        padding: 10px;
 
-        a, button {
-            width: 80%;
-            max-width: 400px;
+        a, button 
+        {
+            width: 100%;
             text-align: center;
-            background-color: #4CAF50;
+            background: linear-gradient(135deg, #4CAF50, #388E3C); // Gradiente para más estilo
             color: white;
             padding: 14px 20px;
             border: none;
@@ -38,27 +38,19 @@
             letter-spacing: 1px;
             cursor: pointer;
             text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: all 0.3s ease;
 
             &:hover {
-                background-color: #45a049;
-                transform: translateY(-2px);
+                background: linear-gradient(135deg, #45a049, #2E7D32);
+                transform: scale(1.05); // Efecto de agrandamiento
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             }
 
             &:active {
-                transform: translateY(1px);
+                transform: scale(0.98);
             }
         }
     }
-    // a{
-    //     text-decoration: none;
-    //     background-color:greenyellow;
-    //     padding: 15px 25px;
-    //     border-radius: 10px;
-    //     border: 1px solid white;
-    //     margin: 15px 10px;
-    //     color: black;
-    // }
 
     .input-group 
     {
@@ -131,6 +123,13 @@
         align-items: center;
         gap: 15px;
 
+        .info_menu{
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         .btn-citas {
             padding: 10px 20px;
             background-color: #4CAF50;
@@ -173,18 +172,22 @@
 
                 &:focus {
                     outline: none;
-                    border-color:  #ddd;
+                    // border-color:  #ddd;
+                    border-color: #4CAF50;
                 }
             }
 
             button {
+                padding: 10px 20px;
                 background-color: #4CAF50;
                 color: white;
                 border: none;
                 border-radius: 8px;
-                padding: 10px;
-                cursor: pointer;
                 font-size: 14px;
+                font-weight: 600;
+                text-transform: uppercase;
+                cursor: pointer;
+                text-decoration: none;
                 transition: background-color 0.3s ease, transform 0.2s ease;
 
                 &:hover {
@@ -227,6 +230,9 @@
                 i{
                     font-size: 25px;
                     cursor: pointer;
+                    &:hover {
+                        transform: scale(1.2);
+                    }
                 }
             }
         }
@@ -352,7 +358,7 @@
                     background-color: #f44336;
                     color: white;
                     &:hover {
-                        background-color: darken(#f44336, 10%);
+                        background-color: #c54036;
                     }
                 }
             }
@@ -416,6 +422,73 @@
         }
     }
 }
+@media (max-width: 768px) {
+    .container_login_citas, .container_login_citas2, .container_login_citas3 {
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    .menu_button a, .menu_button button {
+        width: 100%;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-group .btn-citas {
+        width: 100%;
+    }
+    
+    .info_menu {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filter-group {
+        flex-direction: column;
+        gap: 5px;
+
+        input {
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .container_login_citas, .container_login_citas2, .container_login_citas3 {
+        padding: 15px;
+    }
+    .info_menu{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .info_menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .filter-group {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .input-group label {
+        font-size: 14px;
+    }
+
+    .input-group input {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+
+
+
+
 
 // .container_login_citas3
 // {

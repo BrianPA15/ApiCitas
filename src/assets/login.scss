@@ -112,44 +112,38 @@
     {
         display: flex;
         justify-content: center;
-        gap: 15px;
-        margin-top: 20px;
+        gap: 20px;  // Espaciado entre botones
+        margin-top: 25px;
 
-        button{
+        button,a
+        {
             background-color: #4CAF50;
             color: #fff;
-            padding: 12px 18px;
-            font-size: 1rem;
+            padding: 25px 25px; // Botones más grandes
+            font-size: 1.2rem; // Tamaño del texto más grande
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: all 0.3s ease-in-out;
             text-decoration: none;
-            font-weight: 600;
-        }
-        a{
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 12px 18px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .btn-menu button:hover,
-        .btn-menu a:hover {
-            background-color: #388E3C;
-            transform: translateY(-2px);
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+            &:hover {
+                background-color: #388E3C;
+                transform: scale(1.12); // Aumenta tamaño al pasar el mouse
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            }
+
+        &:hover:before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
         }
 
-        .btn-menu button:active,
-        .btn-menu a:active {
-            transform: translateY(1px);
+            &:active {
+                transform: scale(0.98); // Efecto de presión al hacer clic
+            }
         }
-
     }
     .container_unicos{
         margin-top: 30px;
@@ -183,3 +177,219 @@
         }
     }
 }
+
+@media (max-width: 768px) 
+{
+    .container_login, .container_login_home {
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-group .btn-registrar {
+        width: 100%;
+    }
+
+    .btn-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+
+        button, a {
+            width: 90%;  // Botones más anchos en pantallas pequeñas
+            text-align: center;
+        }
+    }
+
+    .container_unicos ul li {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) 
+{
+    .container_login, .container_login_home {
+        padding: 15px;
+    }
+
+    .input-group label {
+        font-size: 14px;
+    }
+
+    .input-group input {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .btn-menu button, .btn-menu a {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+// .container_login h1 {
+//     color: #333;
+//     margin-bottom: 30px;
+// }
+
+// .container_login .input-group {
+//     display: flex;
+//     flex-direction: column;
+//     margin-bottom: 20px;
+//     text-align: left;
+// }
+
+// .container_login .input-group label {
+//     font-weight: bold;
+//     margin-bottom: 8px;
+//     color: #555;
+// }
+
+// .container_login .input-group input {
+//     padding: 12px;
+//     border: 1px solid #ddd;
+//     border-radius: 5px;
+//     font-size: 16px;
+//     transition: border-color 0.3s ease;
+// }
+
+// .container_login .input-group input:focus {
+//     border-color: #4CAF50;
+//     outline: none;
+// }
+
+// .container_login .btn-group {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     gap: 15px;
+//     margin: 20px 0px;
+// }
+
+// .container_login .btn-group .btn-registrar {
+//     width: 100%;
+//     padding: 12px;
+//     background-color: #4CAF50;
+//     color: white;
+//     border: none;
+//     border-radius: 5px;
+//     font-size: 18px;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease, transform 0.2s ease;
+// }
+
+// .container_login a {
+//     text-decoration: none;
+//     display: block;
+//     font-size: 14px;
+//     color: #007bff;
+// }
+
+// .container_login a:hover {
+//     color: #0056b3;
+// }
+
+// .container_login .btn-registrar:hover {
+//     background-color: #45a049;
+//     transform: scale(1.05);
+// }
+
+// .container_login_home {
+//     max-width: 700px;
+//     margin: 40px auto;
+//     padding: 40px;
+//     background: #ffffff;
+//     border-radius: 16px;
+//     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+//     text-align: center;
+//     font-family: 'Arial', sans-serif;
+//     transition: all 0.3s ease;
+// }
+
+// .container_login_home h1 {
+//     font-size: 2rem;
+//     margin-bottom: 5px;
+//     color: #333;
+// }
+
+// .container_login_home h5 {
+//     font-size: 1.2rem;
+//     color: #555;
+//     margin-bottom: 20px;
+//     font-weight: normal;
+// }
+
+// .container_login_home p {
+//     font-size: 1rem;
+//     color: #666;
+//     margin-bottom: 30px;
+//     line-height: 1.6;
+// }
+
+// .btn-menu {
+//     display: flex;
+//     justify-content: center;
+//     gap: 15px;
+//     margin-top: 20px;
+// }
+
+// .btn-menu button, .btn-menu a {
+//     background-color: #4CAF50;
+//     color: #fff;
+//     padding: 12px 18px;
+//     font-size: 1rem;
+//     border: none;
+//     border-radius: 8px;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease, transform 0.2s ease;
+//     text-decoration: none;
+//     font-weight: 600;
+// }
+
+// .btn-menu button:hover, .btn-menu a:hover {
+//     background-color: #388E3C;
+//     transform: translateY(-2px);
+// }
+
+// .btn-menu button:active, .btn-menu a:active {
+//     transform: translateY(1px);
+// }
+
+// .container_unicos {
+//     margin-top: 30px;
+//     padding: 20px;
+//     background-color: #f9f9f9;
+//     border-radius: 12px;
+//     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+//     text-align: left;
+// }
+
+// .container_unicos ul {
+//     list-style: none;
+//     padding: 0;
+//     margin-bottom: 20px;
+// }
+
+// .container_unicos ul li {
+//     padding: 8px 0;
+//     border-bottom: 1px solid #ddd;
+//     font-size: 1rem;
+//     color: #444;
+// }
+
+// .container_unicos a {
+//     background-color: #4CAF50;
+//     color: #fff;
+//     padding: 12px 18px;
+//     font-size: 1rem;
+//     border: none;
+//     border-radius: 8px;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease, transform 0.2s ease;
+//     text-decoration: none;
+//     font-weight: 600;
+// }
