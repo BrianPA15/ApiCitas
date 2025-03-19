@@ -3,38 +3,6 @@ export default {
 
     BASE_URL: "http://127.0.0.1:5000",
     
-    // Función para verificar si el token ha expirado
-        // checkTokenExpiration() 
-        // {
-        //     const store = useCounterStore();
-        //     const token = store.getToken();
-        
-        //     // Si no hay token, redirigir al login
-        //     if (!token) {
-        //     store.logout();
-        //     window.location.href = '/';
-        //     return false;
-        //     }
-        
-        //     // Verificar si el token está expirado
-        //     const tokenParts = token.split('.');
-        //     if (tokenParts.length === 3) {
-        //     const payload = JSON.parse(atob(tokenParts[1]));
-        //     const expiration = payload.exp * 1000;  // convertir a milisegundos
-        //     const now = Date.now();
-        //     const expirationTime = 5 * 1000;  // 5 segundos
-        
-        //     if (now >= expiration) {
-        //         // Si el token ha expirado
-        //         store.logout();
-        //         alert("Tu sesión ha expirado. Por favor, inicia sesión de nuevo.");
-        //         window.location.href = '/';
-        //         return false;
-        //     }
-        //     }
-        //     return true;
-        // },
-
     async registerUser(userData)
     {
         const response = await fetch(`${this.BASE_URL}/register`, {
@@ -196,3 +164,36 @@ export default {
          return response;
     }
 }
+
+
+    // Función para verificar si el token ha expirado
+        // checkTokenExpiration() 
+        // {
+        //     const store = useCounterStore();
+        //     const token = store.getToken();
+        
+        //     // Si no hay token, redirigir al login
+        //     if (!token) {
+        //     store.logout();
+        //     window.location.href = '/';
+        //     return false;
+        //     }
+        
+        //     // Verificar si el token está expirado
+        //     const tokenParts = token.split('.');
+        //     if (tokenParts.length === 3) {
+        //     const payload = JSON.parse(atob(tokenParts[1]));
+        //     const expiration = payload.exp * 1000;  // convertir a milisegundos
+        //     const now = Date.now();
+        //     const expirationTime = 5 * 1000;  // 5 segundos
+        
+        //     if (now >= expiration) {
+        //         // Si el token ha expirado
+        //         store.logout();
+        //         alert("Tu sesión ha expirado. Por favor, inicia sesión de nuevo.");
+        //         window.location.href = '/';
+        //         return false;
+        //     }
+        //     }
+        //     return true;
+        // },
