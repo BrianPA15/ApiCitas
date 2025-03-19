@@ -2,14 +2,21 @@
     <div class="container_login_citas">
         <img src="../assets/img/unnamed.png" alt="" style="width: 50%; margin-bottom: 20px;">
         <div class="menu_button">
-            <router-link :to="{ name: 'pedir', params: { username } }" class="btn-citas">Pedir Citas</router-link>
-            <!-- <button>Pedir Citas</button> -->
-            <router-link :to="{ name: 'consultar', params: { username } }" class="btn-citas">Consultar tus citas</router-link>
-            <!-- <button>Consultar tus citas</button> -->
+            <router-link :to="{ name: 'pedir', params: { username } }" class="btn-citas">
+        {{ $t('Pedir') }}
+      </router-link>
 
-            <router-link :to="{ name: 'canelarCitas', params: { username } }" class="btn-citas">Cancelar citas</router-link>
-            <!-- <button>Cancelar citas</button> -->
-            <router-link :to="{ name: 'username', params: { username } }" class="btn-citas">Volver</router-link>
+      <router-link :to="{ name: 'consultar', params: { username } }" class="btn-citas">
+        {{ $t('Consultar') }}
+      </router-link>
+
+      <router-link :to="{ name: 'canelarCitas', params: { username } }" class="btn-citas">
+        {{ $t('CancelarCitas') }}
+      </router-link>
+
+      <router-link :to="{ name: 'username', params: { username } }" class="btn-citas">
+        {{ $t('Volver') }}
+      </router-link>
         </div>
     </div>
 </template>

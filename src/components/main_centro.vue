@@ -1,6 +1,6 @@
 <template>
     <div class="listcentros">
-        <h2>Centros</h2>
+        <h2>{{ $t('mainCentro') }}</h2>
         <ul v-for="centro in Centrolist" :key="centro.id">
             <li>
                 <h5>{{ centro.name }}</h5>
@@ -25,12 +25,3 @@ onMounted(async () => {
         Centrolist.value= data;
 }); 
 </script>
-
-
-// const response = await fetch('http://127.0.0.1:5000/centers',{
-    // method: 'GET',
-    // headers: {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Bearer ${apitoken.getToken()}`
-    // }
-    // })

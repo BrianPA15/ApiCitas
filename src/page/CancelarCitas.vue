@@ -1,9 +1,9 @@
 <template>
     <div class="container_login_citas3">
         <form @submit.prevent="CancelarCitas">
-            <h2>{{ "Cancela tus citas " + username }} </h2>
+            <h2>{{ $t('txt3', { username }) }} </h2>
             <div class="input-group">
-                <label for="centro">El centro:</label>
+                <label for="centro">{{ $t('centro') }}:</label>
                 <select v-model="centro">
                     <option v-for="centroItem in Centrolist" :key="centroItem.name" :value="centroItem.name">
                         {{ centroItem.name }}
@@ -12,7 +12,7 @@
             </div>
 
             <div class="input-fecha">
-                <label for="fecha">El dia:</label>
+                <label for="fecha">{{ $t('dia') }}:</label>
                 <i class="bi bi-calendar-event"  @click="openCalendar"></i>
                 <div class="calendar" v-if="showCalendar">
                     <VDatePicker ref="datePicker" v-model="date" mode="dateTime" is24hr class="fecha"/>
@@ -20,22 +20,22 @@
             </div>
 
             <div class="btn-group">
-                <button type="submit" class="btn-citas">Enviar</button>
-                <router-link :to="{ name: 'Citas', params: { username } }" class="btn-citas">Cancelar</router-link>
+                <button type="submit" class="btn-citas">{{ $t('Enviar') }}</button>
+                <router-link :to="{ name: 'Citas', params: { username } }" class="btn-citas">{{ $t('Cancelar') }}</router-link>
             </div>
         </form>
     </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted,getCurrentInstance } from 'vue'
 import { useCounterStore } from '../stores/counter'
 import apiService from '../services/apiService';
 import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute();
 const router = useRouter()
-
+const { proxy } = getCurrentInstance();
 const apitoken = useCounterStore();
 const Centrolist = ref([]);
 const centro = ref('')
@@ -68,18 +68,28 @@ const formatDateTime = (selectedDate) => {
 }
 
 const CancelarCitas = async () => {
-    const fechaformat = formatDateTime(date.value)
-    const citaData={
-        center: centro.value,
-        date: fechaformat
+        const fechaformat = formatDateTime(date.value)
+        const citaData={
+            center: centro.value,
+            date: fechaformat
+        }
+        let response = await apiService.CancelarCitas(citaData);
+        const data = await response.json();
+        if (!response.ok) {
+            const errorMessage =data.msg || 'No se encuentra la cita de dicha fecha';
+                proxy.$swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se encuentra la cita de dicha fecha'
+                });
+            // alert(data.msg || 'No se encuentra la cita de dicha fecha')
+        } else {
+            proxy.$swal.fire({
+                icon: 'success',
+                title: 'Informacion',
+                text: 'La cita ha sido cancelada correctamente.'
+                });
+            router.push({ name: 'Citas', params: { username } })
+        }
     }
-    let response = await apiService.CancelarCitas(citaData);
-    const data = await response.json();
-    if (!response.ok) {
-        alert(data.msg || 'No se encuentra la cita de dicha fecha')
-    } else {
-        alert('La Cita cancelada correctamente')
-        router.push({ name: 'Citas', params: { username } })
-    }
-}
 </script>

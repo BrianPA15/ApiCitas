@@ -8,8 +8,9 @@
 body{
     background: url('../assets/img/fondo.avif'), linear-gradient(135deg, #f8f9fa, #98b4e7);
     // background: linear-gradient(135deg, #f8f9fa, #e3f2fd) !important;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
     background-color: #fef5e7 !important;
     line-height: 1.6 !important;
@@ -25,9 +26,6 @@ body{
     justify-content: space-between; // Mantiene izquierda y derecha en sus posiciones
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     position: relative; // Para posicionar el logo en el centro
-    // position: sticky;
-    // top: 0;
-    // z-index: 1000;
 
     .menu{
         width: 100%;
@@ -38,9 +36,10 @@ body{
         margin: auto;
 
         .centro {
-            position: absolute; // Permite que el logo esté fijo en el centro
-            left: 50%;
-            transform: translateX(-50%); // Centra el logo sin importar los elementos en los lados
+            flex: 1;
+            margin: auto;
+            padding:0;
+            margin: auto;
             text-align: center;
             .logo {
                 font-size: 32px;
@@ -48,27 +47,27 @@ body{
                 // text-transform: uppercase;
                 letter-spacing: 1.5px;
                 color: #fff;
-                margin: 0;
             }
         }
-        .izquierda, .derecha {
+        .izquierda{
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
             gap: 15px;
-            
-            div{
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                font-weight: bold;
-                color: whitesmoke;
-            }
+            width: 33%;
             img{
-                width: 8%;
-                // height:30vh;
-            }
+                width: 80px;
+            } 
         }
+        
+        .derecha {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 15px;
+            width: 33%;
+        }
+
         .btn-link {
             cursor: pointer;
             text-decoration: none;
@@ -78,13 +77,15 @@ body{
             padding: 10px 20px;
             border-radius: 8px;
             transition: background-color 0.3s ease, transform 0.2s ease;
-                
+            white-space: nowrap; 
             &:hover {
                     background-color: #45a049;
                     transform: scale(1.05); /* Pequeña animación al pasar el ratón */
             }
         }
+
         .btn-link-close {
+            white-space: nowrap; 
             cursor: pointer;
             text-decoration: none;
             background-color: #4CAF50;
@@ -97,33 +98,50 @@ body{
             align-items: center;
             gap: 10px;
             &:hover {
-                    background-color: red;
+                    background-color: rgba(255, 0, 0, 0.696);
                     transform: scale(1.05); /* Pequeña animación al pasar el ratón */
             }
             i{
-                font-size: 30px;
+                font-size: 25px;
                 font-weight: bold;
             }
         }
     }
 }
+.btnIdioma{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
 main {
     margin-top: 10px;
 }
 
-
-@media (max-width: 768px) {
+// 🔹 Responsive para Tablets y móviles grandes
+@media (max-width: 760px) {
     .encabezado {
-        padding: 10px 20px;
+        padding: 15px 20px;
     }
-    .menu {
-        display: flex;
+
+    .menu 
+    {
         flex-direction: column;
+        align-items: center;
         text-align: center;
-        gap: 20px;
-    }
-    .logo {
-        font-size: 24px;
+        gap: 15px;
+    
+        .izquierda{
+            width: 100%;
+            justify-content: center;
+        }
+        .centro{
+            width: 100%;
+            justify-content: center;
+        } 
+        .derecha {
+            width: 100%;
+            justify-content: center;
+        }
     }
 
     .btn-link {
@@ -132,14 +150,24 @@ main {
     }
 }
 
-@media (max-width: 480px) {
+// 🔹 Responsive para móviles pequeños
+@media (max-width: 500px) {
     .menu {
         flex-direction: column;
         align-items: center;
+        .izquierda, .centro, .derecha {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
     }
-
+    .btnIdioma{
+        justify-content: center;
+    }
     .logo {
-        font-size: 20px;
+        font-size: 24px;
     }
 
     .btn-link {
@@ -148,11 +176,7 @@ main {
     }
 }
 
+
 @import "./registro.scss";
 @import "./login.scss";
 @import "./citas.scss";
-
-
-    // .listacontenido{
-    //     display: flex;
-    //     justify-content: space-around;

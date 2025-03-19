@@ -3,49 +3,49 @@
     <form @submit.prevent="registro" >
       <div class="text-center">
         <img src="../assets/img/user.png" alt="">
-        <h1 class="text-center">Registro</h1>
+        <h1 class="text-center">{{$t('Resgistro2')}}</h1>
       </div>
       <div class="row">
         <div class="col-md-6">
           <div class="mb-3">
-            <label for="name" class="form-label">Nombre:</label>
-            <input type="text" id="name" v-model="name" class="form-control" placeholder="Nombre" required>
+            <label for="name" class="form-label">{{$t('Nombre')}}:</label>
+            <input type="text" id="name" v-model="name" class="form-control" :placeholder="$t('Nombre')" required>
           </div>
           <div class="mb-3">
-            <label for="email" class="form-label">Email:</label>
-            <input type="email" id="email" v-model="email" class="form-control" placeholder="Correo Electrónico" required>
+            <label for="email" class="form-label">{{ $t('email') }}:</label>
+            <input type="email" id="email" v-model="email" class="form-control" :placeholder="$t('email')" required>
           </div>
           <div class="mb-3">
-            <label for="username" class="form-label">Usuario:</label>
-            <input type="text" id="username" v-model="username" class="form-control" placeholder="Usuario" required>
+            <label for="username" class="form-label">{{$t('User')}}:</label>
+            <input type="text" id="username" v-model="username" class="form-control" :placeholder="$t('User')" required>
           </div>
         </div>
         
         <div class="col-md-6">
           <div class="mb-3">
-            <label for="lastname" class="form-label">Apellido:</label>
-            <input type="text" id="lastname" v-model="lastname" class="form-control" placeholder="Apellido" required>
+            <label for="lastname" class="form-label">{{$t('Apellidos')}}:</label>
+            <input type="text" id="lastname" v-model="lastname" class="form-control" :placeholder="$t('Apellidos')"  required>
           </div>
           <div class="mb-3">
-            <label for="phone" class="form-label">Teléfono:</label>
-            <input type="text" id="phone" v-model="phone" class="form-control" placeholder="Número de teléfono" required>
+            <label for="phone" class="form-label">{{$t('Telefono')}}:</label>
+            <input type="text" id="phone" v-model="phone" class="form-control" :placeholder="$t('Telefono')" required>
           </div>
           <div class="mb-3">
-            <label for="password" class="form-label">Contraseña:</label>
-            <input type="password" id="password" v-model="password" class="form-control" placeholder="Contraseña" required>
+            <label for="password" class="form-label">{{$t('pass')}}:</label>
+            <input type="password" id="password" v-model="password" class="form-control" :placeholder="$t('pass')"  required>
           </div>
         </div>
       </div>
       
       <div class="mb-2">
-        <label for="date" class="form-label">Fecha de nacimiento:</label>
-        <input v-model="date" type="date" class="form-control" placeholder="Fecha de nacimiento" />
+        <label for="date" class="form-label">{{$t('Fecha')}}:</label>
+        <input v-model="date" type="date" class="form-control" :placeholder="$t('Fecha')" />
       </div>
       
       <div class="btn-group">
-        <button type="submit" class="btn-registrar">Registrarse</button>
+        <button type="submit" class="btn-registrar">{{ $t('Registro2') }}</button>
         <router-link to="/" class="btn-registrar">
-          Cancelar
+          {{ $t('Cancelar') }}
         </router-link>
       </div>
     </form>
@@ -138,38 +138,4 @@ const registro = async () => {
     alert('Error al conectar con el servidor.')
   }
 }
-
-
-    // const response = await fetch('http://127.0.0.1:5000/register', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     name: name.value,
-    //     lastname: lastname.value,
-    //     email: email.value,
-    //     phone: phone.value,
-    //     username: username.value,
-    //     password: password.value,
-    //     date: formattedDate  // <- Fecha bien formateada
-    //   })
-    // })
-
-
-// Formatea la fecha al seleccionar (opcional, para enviar tipo string)
-// const formatDate = (selectedDate) => {
-//   if (selectedDate) {
-//     const year = selectedDate.getFullYear()
-//     const month = String(selectedDate.getMonth() + 1).padStart(2, '0')
-//     const day = String(selectedDate.getDate()).padStart(2, '0')
-//     return `${day}/${month}/${year}`  // <- Devuelve la fecha formateada
-//   }
-//   return ''
-// }
-
-// const openCalendar = () => {
-//     showCalendar.value = !showCalendar.value;
-// }
-
 </script>

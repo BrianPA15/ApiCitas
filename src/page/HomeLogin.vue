@@ -1,16 +1,16 @@
 <template>
 <div class="container_login_home">
-    <h1>Bienvenido</h1>
+    <h1>{{ $t('Intro') }}</h1>
     <h5>{{ username }}</h5>
     <p>
-        Este es tu espacio personal donde podrás ver y gestionar tus datos personales, 
-        tus citas y explorar los centros disponibles para ti.
+        {{ $t('texto') }}
     </p>
     <div class="btn-menu">
-        <button @click="verPerfil">Ver Perfil</button>
-        <button @click="verCentros">Ver Centros</button>
-        <router-link :to="{ name: 'Citas', params: { username } }" class="btn-registrar">Citas</router-link>
-
+        <button @click="verPerfil">{{ $t('Perfil') }}</button>
+      <button @click="verCentros">{{ $t('Centros') }}</button>
+      <router-link :to="{ name: 'Citas', params: { username } }" class="btn-registrar">
+        {{ $t('Citas') }}
+      </router-link>
     </div>
 
     <div class="container_unicos">

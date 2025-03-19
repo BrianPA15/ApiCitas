@@ -1,11 +1,11 @@
 <template>
     <div class="info_ocupados">
-        <h3>Fechas Registradas o Ocupadas</h3>
+        <h3>{{ $t('txt3') }}</h3>
         <ul>
             <li v-for="(ocupado, index) in listOcupado" :key="index">
-                <p>Fecha: {{ ocupado.date }} </p>
-                <p>Centro: {{ ocupado.center }} </p>
-                <p>Usuario: {{ ocupado.username }}</p>
+                <p>{{$t('txt4')}}: {{ ocupado.date }} </p>
+                <p>{{$t('mainCentro')}}: {{ ocupado.center }} </p>
+                <p>{{$t('User')}}: {{ ocupado.username }}</p>
             </li>
         </ul>
     </div>

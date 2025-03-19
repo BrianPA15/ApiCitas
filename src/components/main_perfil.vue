@@ -1,13 +1,13 @@
 <template>
     <div class="listperfil">
-        <h2>Perfil</h2>
+        <h2>{{ $t('mainPerfil') }}</h2>
         <ul v-if="perfilList">
-            <li>{{ "Nombre completo : " +  perfilList?.name +  " " + perfilList?.lastname }}</li>
-            <li>{{ "Email : " +  perfilList?.email}}</li>
-            <li>{{ "Telefono : " +  perfilList?.phone}}</li>
-            <li>{{ "Fecha Nacimiento : " +  perfilList?.date}}</li>
+            <li>{{ $t('Datos1') + ": " +  perfilList?.name +  " " + perfilList?.lastname }}</li>
+            <li>{{ $t('Datos2') + ": " +  perfilList?.email}}</li>
+            <li>{{ $t('Datos3') + ": " +  perfilList?.phone}}</li>
+            <li>{{ $t('Datos4') + ": "  +  perfilList?.date}}</li>
         </ul>
-        <router-link :to="{ name: 'cambio', params: { username } }">Cambiar Datos</router-link>
+        <router-link :to="{ name: 'cambio', params: { username } }">{{ $t('CambioDatos') }}</router-link>
     </div>
 </template>
 <script setup>

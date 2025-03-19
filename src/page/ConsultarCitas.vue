@@ -1,20 +1,21 @@
 <template>
     <div class="container_login_citas2">
         <div class="info_citas">
-            <router-link :to="{ name: 'Citas', params: { username } }" class="btn-citas">Volver</router-link>
-            <!-- <h2>{{ username }}</h2> -->
-            <h3>Mis Citas</h3>
+            <router-link :to="{ name: 'Citas', params: { username } }" class="btn-citas">
+                {{ $t('Volver') }}
+            </router-link>            <!-- <h2>{{ username }}</h2> -->
+            <h3>{{ $t('txt2') }}</h3>
             <div class="info_menu">
-            <button @click="filtrar" class="btn-citas">Buscar por día</button>
-            <input type="date" id="day" v-model="day" placeholder="DD/MM/YYYY">
-            <button @click="Cancelar" class="btn-citas">Quitar Filtrado</button>
+                <button @click="filtrar" class="btn-citas">{{ $t('btn1') }}</button>
+                <input type="date" id="day" v-model="day" placeholder="DD/MM/YYYY" />
+                <button @click="Cancelar" class="btn-citas">{{ $t('btn2') }}</button>
             </div>
 
             <ul v-for="consult in consultList" :key="consult.id">
                 <li>
                     <div>
-                        <h5>{{ "Centro de Salud: " + consult.center }}</h5>
-                        <p>{{ "Fecha y Hora: " + consult.date }}</p>
+                        <h5>{{ $t('Consulta') + ": " + consult.center }}</h5>
+                        <p>{{ $t('ConsultaFH') + ": " + consult.date }}</p>
                     </div>
                     <div>
                         <a @click="CancelarCita(consult.center, consult.date)">
@@ -28,7 +29,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, getCurrentInstance } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCounterStore } from '../stores/counter'
 import apiService from '../services/apiService';
@@ -39,6 +40,7 @@ const apitoken=useCounterStore();
 const isLoading = ref(false);
 const consultList= ref([]);
 const day= ref('');
+const { proxy } = getCurrentInstance();
 
 onMounted(async () => {
     await cargarlista();
@@ -76,7 +78,12 @@ const filtrar = async () => {
     isLoading.value = true;
 
     if (!day.value) {
-        alert("Por favor, ingrese una fecha válida");
+        proxy.$swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text:'Por favor, ingrese una fecha válida'
+        });
+        // alert("Por favor, ingrese una fecha válida");
         isLoading.value = false;
         return;
     }
@@ -85,7 +92,14 @@ const filtrar = async () => {
 
     try {
         let response = await apiService.getByDay(formattedDate);
-        if (!response.ok) throw new Error("Error al filtrar las citas");
+        if (!response.ok) {
+            proxy.$swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text:'Error al filtrar las citas'
+        });
+        }
+        // throw new Error("Error al filtrar las citas");
 
         const data = await response.json();
 
@@ -97,7 +111,12 @@ const filtrar = async () => {
         }
 
         if (data.length === 0) {
-            alert("No se encontraron citas para esta fecha.");
+            proxy.$swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text:'No se encontraron citas para esta fecha.'
+            });
+            // alert("No se encontraron citas para esta fecha.");
         }
 
         consultList.value = data; // Actualiza la lista de citas en Vue
@@ -118,14 +137,27 @@ const CancelarCita = async (center, date) => {
         const data = await response.json();
 
         if (!response.ok) {
-            alert(data.msg || 'No se pudo cancelar la cita');
+            proxy.$swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text:data.msg || 'No se pudo cancelar la cita'
+            });
+            // alert(data.msg || 'No se pudo cancelar la cita');
         } else {
-            alert('La cita ha sido cancelada correctamente.');
+            proxy.$swal.fire({
+                icon: 'success',
+                title: 'Informacion',
+                text: 'La cita ha sido cancelada correctamente.'
+                });
             await cargarlista(); // Recargamos la lista de citas para reflejar los cambios
         }
     } catch (error) {
         console.error("Error al cancelar la cita:", error);
-        alert("Hubo un error al cancelar la cita.");
+        proxy.$swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text:'Hubo un error al cancelar la cita.'
+            });
     }
 };
 
