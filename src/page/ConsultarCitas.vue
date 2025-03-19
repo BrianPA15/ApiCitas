@@ -11,7 +11,11 @@
                 <button @click="Cancelar" class="btn-citas">{{ $t('btn2') }}</button>
             </div>
 
-            <ul v-for="consult in consultList" :key="consult.id">
+            <div v-if="consultList.length === 0" class="py-4">
+                <h4>{{ $t('NoTienesCitas') }}</h4> 
+            </div>
+
+            <ul v-for="consult in consultList" :key="consult.id" >
                 <li>
                     <div>
                         <h5>{{ $t('Consulta') + ": " + consult.center }}</h5>

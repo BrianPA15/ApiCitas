@@ -26,7 +26,7 @@
         </form>
 
         <div class="btn-group">
-          <button @click="verOcupados" class="btn-citas">{{ $t('Ocupados') }}</button>
+        <button @click="verOcupados" class="btn-citas">{{ $t('Ocupados') }}</button>
         </div>
 
         <ocupada v-if="showOcupado"/>

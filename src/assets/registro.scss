@@ -64,13 +64,15 @@
 .container_registro2{
   max-width: 450px;  /* Ajustamos el tamaño del contenedor */
   margin: 60px auto;  /* Centramos el contenedor */
-  padding: 25px;
+  padding: 30px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Sombra suave */
   font-family: 'Arial', sans-serif;
   color: #333;
-
+form{
+  padding: 10px;
+}
 h1 {
   color: #333;
   margin-bottom: 30px;

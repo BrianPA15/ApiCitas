@@ -3,7 +3,7 @@
     <form @submit.prevent="registro" >
       <div class="text-center">
         <img src="../assets/img/user.png" alt="">
-        <h1 class="text-center">{{$t('Resgistro2')}}</h1>
+        <h1 class="text-center">{{$t('Registro2')}}</h1>
       </div>
       <div class="row">
         <div class="col-md-6">

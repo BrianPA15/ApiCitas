@@ -25,3 +25,4 @@ onMounted(async () => {
         Centrolist.value= data;
 }); 
 </script>
+

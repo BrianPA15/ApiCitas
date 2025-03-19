@@ -67,7 +67,9 @@ const messages = {
         CambioDatos: "Change Data",
         Cambiar:"Change",
         mainCentro:"Centers",
-        mainPerfil:"Profile"
+        mainPerfil:"Profile",
+        NoTienesCitas: "You don't have any appointments scheduled yet. Schedule your first appointment!",
+        NoHayCitasOcupadas: "There are no appointments currently booked."
     },
     es: {
         logo: "Comunidad de Madrid",
@@ -113,7 +115,9 @@ const messages = {
         CambioDatos: "Cambiar Datos",
         Cambiar:"Cambiar",
         mainCentro:"Centros",
-        mainPerfil:"Perfil"
+        mainPerfil:"Perfil",
+        NoTienesCitas: "No tienes citas agendadas todavía. ¡Agenda tu primera cita!",
+        NoHayCitasOcupadas: "No hay citas ocupadas actualmente."
     },
     fr: {
         logo: "Communauté de Madrid",
@@ -159,7 +163,9 @@ const messages = {
         CambioDatos: "Modifier les données",
         Cambiar:"Modifier",
         mainCentro:"Centres",
-        mainPerfil:"Profil"
+        mainPerfil:"Profil",
+        NoTienesCitas: "Vous n'avez pas encore de rendez-vous programmé. Planifiez votre premier rendez-vous !",
+        NoHayCitasOcupadas: "Il n’y a aucun rendez-vous réservé actuellement."
     }
 };
 
