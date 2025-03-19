@@ -120,15 +120,15 @@ const registro = async () => {
       proxy.$swal.fire({
       icon: 'error',
       title: 'Error',
-      text: 'Error al registrar el usuario.'
+      text: proxy.$t('registerError')
     });
 
     } else {
       // alert('Usuario registrado correctamente.')
       proxy.$swal.fire({
       icon: 'success',
-      title: 'Informacion!',
-      text: 'Usuario registrado correctamente'
+      title: proxy.$t('registerSuccessTitle'), // Traducción del título de éxito
+      text: proxy.$t('registerSuccessText')
     });
 
       router.push({ name: 'login'});

@@ -112,7 +112,56 @@ body{
     display: flex;
     gap: 10px;
     justify-content: flex-end;
+    
+    .btn-language {
+        position: relative;
+        width: 60px;
+        height: 40px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        background-color: #6c757d;
+        color: white;
+        transition: background 0.3s ease-in-out;
+        overflow: hidden;
+        border-radius: 8px;
+
+        &:hover {
+            color: transparent;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        &:hover::before {
+            opacity: 1;
+        }
+    }
+
+    .btn-es::before {
+        background-image: url('../assets/img/escudo1.png');
+    }
+
+    .btn-en::before {
+        background-image: url('../assets/img/escudo3.png');
+    }
+
+    .btn-fr::before {
+        background-image: url('../assets/img/escudo2.png');
+    }
 }
+
 main {
     margin-top: 10px;
 }

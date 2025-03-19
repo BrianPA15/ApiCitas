@@ -20,16 +20,17 @@
         <div v-if="isAuthenticated">
           <a @click="logout" class="btn-link-close btn-danger">
             <i class="bi bi-box-arrow-left"></i> 
-            <!-- {{ $t('NotSesion') }} -->
           </a>
         </div>
       </div>
     </div>
   </header> 
   <div class="btnIdioma">
-    <button @click="cambiarIdioma('es')" class="btn btn-secondary">Es</button>
-    <button @click="cambiarIdioma('en')" class="btn btn-secondary">En</button>
-    <button @click="cambiarIdioma('fr')" class="btn btn-secondary">Fr</button>
+    <div class="btnIdioma">
+        <button @click="cambiarIdioma('es')" class="btn-language btn-es">Es</button>
+        <button @click="cambiarIdioma('en')" class="btn-language btn-en">En</button>
+        <button @click="cambiarIdioma('fr')" class="btn-language btn-fr">Fr</button>
+    </div>
   </div>
 <main>
   <RouterView/>

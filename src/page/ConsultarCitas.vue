@@ -85,7 +85,7 @@ const filtrar = async () => {
         proxy.$swal.fire({
             icon: 'error',
             title: 'Error',
-            text:'Por favor, ingrese una fecha válida'
+            text: proxy.$t('enterValidDate')
         });
         // alert("Por favor, ingrese una fecha válida");
         isLoading.value = false;
@@ -100,7 +100,7 @@ const filtrar = async () => {
             proxy.$swal.fire({
             icon: 'error',
             title: 'Error',
-            text:'Error al filtrar las citas'
+            text: proxy.$t('filterError')
         });
         }
         // throw new Error("Error al filtrar las citas");
@@ -118,7 +118,7 @@ const filtrar = async () => {
             proxy.$swal.fire({
             icon: 'error',
             title: 'Error',
-            text:'No se encontraron citas para esta fecha.'
+            text: proxy.$t('noAppointments')
             });
             // alert("No se encontraron citas para esta fecha.");
         }
@@ -144,14 +144,14 @@ const CancelarCita = async (center, date) => {
             proxy.$swal.fire({
             icon: 'error',
             title: 'Error',
-            text:data.msg || 'No se pudo cancelar la cita'
+            text:data.msg || proxy.$t('cancelError')
             });
             // alert(data.msg || 'No se pudo cancelar la cita');
         } else {
             proxy.$swal.fire({
                 icon: 'success',
                 title: 'Informacion',
-                text: 'La cita ha sido cancelada correctamente.'
+                text: proxy.$t('cancelSuccess')
                 });
             await cargarlista(); // Recargamos la lista de citas para reflejar los cambios
         }
@@ -160,7 +160,7 @@ const CancelarCita = async (center, date) => {
         proxy.$swal.fire({
             icon: 'error',
             title: 'Error',
-            text:'Hubo un error al cancelar la cita.'
+            text: proxy.$t('cancelFetchError')
             });
     }
 };

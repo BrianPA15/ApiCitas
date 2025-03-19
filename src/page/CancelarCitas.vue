@@ -80,14 +80,14 @@ const CancelarCitas = async () => {
                 proxy.$swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'No se encuentra la cita de dicha fecha'
+                text: proxy.$t('cancelFetchError')
                 });
             // alert(data.msg || 'No se encuentra la cita de dicha fecha')
         } else {
             proxy.$swal.fire({
                 icon: 'success',
                 title: 'Informacion',
-                text: 'La cita ha sido cancelada correctamente.'
+                text:  proxy.$t('cancelSuccess')
                 });
             router.push({ name: 'Citas', params: { username } })
         }

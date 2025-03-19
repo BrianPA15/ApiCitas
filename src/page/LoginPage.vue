@@ -58,14 +58,14 @@ const login = async () => {
     proxy.$swal.fire({
       icon: 'error',
       title: 'Error',
-      text: 'Error al acceder el usuario.'
+      text: proxy.$t('loginError')
     });
   } else {
     // Usando $swal desde la instancia
     proxy.$swal.fire({
       icon: 'success',
-      title: '¡Bienvenido!',
-      text: 'Usuario correctamente autenticado.'
+      title: proxy.$t('loginSuccessTitle'), // Traducción del título de éxito
+      text: proxy.$t('loginSuccessText')
     });
 
     console.log("Token recibido : " + data.access_token);

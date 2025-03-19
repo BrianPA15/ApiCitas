@@ -4,34 +4,36 @@ export default {
     BASE_URL: "http://127.0.0.1:5000",
     
     // Función para verificar si el token ha expirado
-        checkTokenExpiration() {
-            const store = useCounterStore();
-            const token = store.getToken();
+        // checkTokenExpiration() 
+        // {
+        //     const store = useCounterStore();
+        //     const token = store.getToken();
         
-            // Si no hay token, redirigir al login
-            if (!token) {
-            store.logout();
-            window.location.href = '/';
-            return false;
-            }
+        //     // Si no hay token, redirigir al login
+        //     if (!token) {
+        //     store.logout();
+        //     window.location.href = '/';
+        //     return false;
+        //     }
         
-            // Verificar si el token está expirado
-            const tokenParts = token.split('.');
-            if (tokenParts.length === 3) {
-            const payload = JSON.parse(atob(tokenParts[1]));
-            const expiration = payload.exp * 1000;  // convertir a milisegundos
-            const now = Date.now();
+        //     // Verificar si el token está expirado
+        //     const tokenParts = token.split('.');
+        //     if (tokenParts.length === 3) {
+        //     const payload = JSON.parse(atob(tokenParts[1]));
+        //     const expiration = payload.exp * 1000;  // convertir a milisegundos
+        //     const now = Date.now();
+        //     const expirationTime = 5 * 1000;  // 5 segundos
         
-            if (now >= expiration) {
-                // Si el token ha expirado
-                store.logout();
-                alert("Tu sesión ha expirado. Por favor, inicia sesión de nuevo.");
-                window.location.href = '/';
-                return false;
-            }
-            }
-            return true;
-        },
+        //     if (now >= expiration) {
+        //         // Si el token ha expirado
+        //         store.logout();
+        //         alert("Tu sesión ha expirado. Por favor, inicia sesión de nuevo.");
+        //         window.location.href = '/';
+        //         return false;
+        //     }
+        //     }
+        //     return true;
+        // },
 
     async registerUser(userData)
     {
@@ -58,8 +60,10 @@ export default {
 
     async VerPerfil()
     {
-        const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
-        if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
+        const store = useCounterStore();
+        if (!store.getToken()) return;
+        // const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
+        // if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
 
         const apitoken=useCounterStore();
         const response = await fetch(`${this.BASE_URL}/profile`,{
@@ -74,8 +78,10 @@ export default {
     
     async VerCentros()
     {
-        const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
-        if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
+        const store = useCounterStore();
+        if (!store.getToken()) return;
+        // const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
+        // if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
         const apitoken=useCounterStore();
         const response = await fetch(`${this.BASE_URL}/centers`,{
             method: 'GET',
@@ -89,9 +95,8 @@ export default {
 
     async Pedircita(citas)
     {
-        const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
-        if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
-
+        const store = useCounterStore();
+        if (!store.getToken()) return;
         const apitoken=useCounterStore();
         const response = await fetch(`${this.BASE_URL}/date/create`, {
             method: 'POST',
@@ -106,8 +111,10 @@ export default {
 
     async CancelarCitas(citas)
     {
-        const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
-        if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
+        const store = useCounterStore();
+        if (!store.getToken()) return;
+        // const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
+        // if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
         const apitoken=useCounterStore();
         const response = await fetch(`${this.BASE_URL}/date/delete`, {
             method: 'POST',
@@ -122,8 +129,10 @@ export default {
 
     async VerCitaOcupadas()
     {
-        const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
-        if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
+        const store = useCounterStore();
+        if (!store.getToken()) return;
+        // const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
+        // if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
         const apitoken=useCounterStore();
         const response = await fetch(`${this.BASE_URL}/dates`, {
             method: 'GET',
@@ -137,8 +146,10 @@ export default {
 
     async getByDay(day)
     {
-        const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
-        if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
+        const store = useCounterStore();
+        if (!store.getToken()) return;
+        // const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
+        // if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
         const apitoken=useCounterStore();
         const response = await fetch(`${this.BASE_URL}/date/getByDay`, {
             method: "POST",
@@ -153,8 +164,10 @@ export default {
 
     async getByUser()
     {
-        const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
-        if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
+        const store = useCounterStore();
+        if (!store.getToken()) return;
+        // const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
+        // if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
         const apitoken=useCounterStore();
         const response = await fetch(`${this.BASE_URL}/date/getByUser`,{
             method: 'GET',
@@ -167,8 +180,10 @@ export default {
     },
     
     async Cambiar(User){
-        const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
-        if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
+        const store = useCounterStore();
+        if (!store.getToken()) return;
+        // const isValidToken = this.checkTokenExpiration();  // Verificar si el token es válido
+        // if (!isValidToken) return;  // Si el token no es válido, no se hace la solicitud
         const apitoken=useCounterStore();
         const response = await fetch('http://127.0.0.1:5000/currentUser', {
             method: 'PATCH',

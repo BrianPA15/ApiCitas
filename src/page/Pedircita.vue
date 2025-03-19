@@ -102,7 +102,7 @@ const PedirCitas = async () => {
         proxy.$swal.fire({
         icon: 'success',
         title: 'Informacion',
-        text: 'Cita creada correctamente'
+        text: proxy.$t('appointmentSuccessText')
         });
         // alert('Cita creada correctamente')
         router.push({ name: 'Citas', params: { username } })
